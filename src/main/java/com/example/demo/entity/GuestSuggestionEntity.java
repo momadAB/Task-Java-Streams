@@ -54,7 +54,9 @@ public class GuestSuggestionEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GuestSuggestionEntity that = (GuestSuggestionEntity) o;
-        return Objects.equals(rate, that.rate) && Objects.equals(suggestionText, that.suggestionText) && status == that.status;
+        return Objects.equals(rate, that.rate)
+                && Objects.equals(suggestionText, that.suggestionText)
+                && status == that.status;
     }
 
     @Override

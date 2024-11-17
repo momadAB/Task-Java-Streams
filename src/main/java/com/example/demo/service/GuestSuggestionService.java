@@ -43,10 +43,12 @@ public class GuestSuggestionService {
     }
 
     public List<GuestSuggestionEntity> findAllCreatedSuggestions() {
-        return guestSuggestionRepository.findAll().stream().filter(suggestion -> suggestion.getStatus().equals(SuggestionStatus.CREATE)).toList();
+        return guestSuggestionRepository.findAll().stream()
+                .filter(suggestion -> suggestion.getStatus().equals(SuggestionStatus.CREATE)).toList();
     }
 
     public List<GuestSuggestionEntity> findAllRemovedSuggestions() {
-        return guestSuggestionRepository.findAll().stream().filter(suggestion -> suggestion.getStatus().equals(SuggestionStatus.REMOVE)).toList();
+        return guestSuggestionRepository.findAll().stream()
+                .filter(suggestion -> suggestion.getStatus().equals(SuggestionStatus.REMOVE)).toList();
     }
 }
