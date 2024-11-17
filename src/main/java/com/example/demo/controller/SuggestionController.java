@@ -26,7 +26,7 @@ public class SuggestionController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
             // Process suggestion
-            guestSuggestionService.processSuggestion(request.getSuggestionText());
+            guestSuggestionService.processSuggestion(request);
             return ResponseEntity.status(HttpStatus.CREATED).body("Successful creation.");
         }
         catch (Exception e) {
@@ -35,9 +35,13 @@ public class SuggestionController {
     }
 
     @GetMapping("/suggestions")
-    public ResponseEntity<List<GuestSuggestionEntity>> getSuggestions() {
+    public ResponseEntity<List<GuestSuggestionEntity>> getSuggestions(@RequestParam(required = false) String duplicates) {
         try {
-        return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestions());
+            if("false".equalsIgnoreCase(duplicates)) {
+                return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestionsNoDuplicates());
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestions());
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
