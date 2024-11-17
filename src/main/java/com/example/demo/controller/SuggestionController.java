@@ -27,7 +27,7 @@ public class SuggestionController {
             }
             // Process suggestion
             guestSuggestionService.processSuggestion(request.getSuggestionText());
-            return ResponseEntity.status(HttpStatus.CREATED).body(null);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Successful creation.");
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
