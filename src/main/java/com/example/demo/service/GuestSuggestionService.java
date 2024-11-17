@@ -5,6 +5,7 @@ import com.example.demo.entity.GuestSuggestionEntity;
 import com.example.demo.enums.SuggestionStatus;
 import com.example.demo.functionalInterface.SuggestionProcessor;
 import com.example.demo.repository.GuestSuggestionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

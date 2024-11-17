@@ -18,6 +18,21 @@ public class SuggestionController {
         this.guestSuggestionService = guestSuggestionService;
     }
 
+    // Gets all suggestions, optionally without duplicates using params
+    @GetMapping("/suggestions")
+    public ResponseEntity<List<GuestSuggestionEntity>> getSuggestions(@RequestParam(required = false) String duplicates) {
+        try {
+            if("false".equalsIgnoreCase(duplicates)) {
+                return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestionsNoDuplicates());
+            } else {
+                return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestions());
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    // Create suggestion
     @PostMapping("/suggestions/post")
     public ResponseEntity<String> createSuggestion(@RequestBody CreateSuggestionRequest request) {
         try {
@@ -34,16 +49,4 @@ public class SuggestionController {
         }
     }
 
-    @GetMapping("/suggestions")
-    public ResponseEntity<List<GuestSuggestionEntity>> getSuggestions(@RequestParam(required = false) String duplicates) {
-        try {
-            if("false".equalsIgnoreCase(duplicates)) {
-                return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestionsNoDuplicates());
-            } else {
-                return ResponseEntity.status(HttpStatus.OK).body(guestSuggestionService.getSuggestions());
-            }
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
-    }
 }

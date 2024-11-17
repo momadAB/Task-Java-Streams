@@ -19,6 +19,7 @@ public class SuggestionStatusController {
         this.guestSuggestionService = guestSuggestionService;
     }
 
+    // Get all created suggestions
     @GetMapping("/status/created")
     public ResponseEntity<List<GuestSuggestionEntity>> getCreatedSuggestions() {
         try {
@@ -28,6 +29,7 @@ public class SuggestionStatusController {
         }
     }
 
+    // Get all removed suggestions
     @GetMapping("/status/removed")
     public ResponseEntity<List<GuestSuggestionEntity>> getRemovedSuggestions() {
         try {
