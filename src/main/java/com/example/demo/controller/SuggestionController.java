@@ -36,8 +36,8 @@ public class SuggestionController {
     @PostMapping("/suggestions/post")
     public ResponseEntity<String> createSuggestion(@RequestBody CreateSuggestionRequest request) {
         try {
-            // Return bad request if field is null
-            if(request.getSuggestionText() == null) {
+            // Return bad request if any field is null
+            if(request.getSuggestionText() == null || request.getStatus() == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
             }
             // Process suggestion
